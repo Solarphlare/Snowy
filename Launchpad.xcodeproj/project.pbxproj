@@ -1,0 +1,416 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E0C41352B6F3C02002A642D /* LaunchpadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C41342B6F3C02002A642D /* LaunchpadApp.swift */; };
+		3E0C41372B6F3C02002A642D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C41362B6F3C02002A642D /* ContentView.swift */; };
+		3E0C41392B6F3C03002A642D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C41382B6F3C03002A642D /* Assets.xcassets */; };
+		3E0C413C2B6F3C03002A642D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C413B2B6F3C03002A642D /* Preview Assets.xcassets */; };
+		3E1650552B6F672400EF446B /* DelegateStateBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1650542B6F672400EF446B /* DelegateStateBridge.swift */; };
+		3E1650712B6F7F2500EF446B /* NotificationHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1650702B6F7F2500EF446B /* NotificationHistoryView.swift */; };
+		3E1650742B701D9800EF446B /* NotificationMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1650732B701D9800EF446B /* NotificationMetadata.swift */; };
+		3E1650762B70333E00EF446B /* NotificationMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1650752B70333E00EF446B /* NotificationMetadataView.swift */; };
+		3E2204492B73DBF9005F76BC /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2204482B73DBF9005F76BC /* Secrets.swift */; };
+		3ECEE06F2B705086007A0232 /* NotificationHistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */; };
+		3ECEE0722B705160007A0232 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3ECEE0712B705160007A0232 /* Alamofire */; };
+		3ED57F032B717F7C00B653A0 /* NotificationHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED57F022B717F7C00B653A0 /* NotificationHistoryStore.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3E0C41312B6F3C02002A642D /* Launchpad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Launchpad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E0C41342B6F3C02002A642D /* LaunchpadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchpadApp.swift; sourceTree = "<group>"; };
+		3E0C41362B6F3C02002A642D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3E0C41382B6F3C03002A642D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E0C413B2B6F3C03002A642D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3E1650542B6F672400EF446B /* DelegateStateBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateStateBridge.swift; sourceTree = "<group>"; };
+		3E1650702B6F7F2500EF446B /* NotificationHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistoryView.swift; sourceTree = "<group>"; };
+		3E1650732B701D9800EF446B /* NotificationMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMetadata.swift; sourceTree = "<group>"; };
+		3E1650752B70333E00EF446B /* NotificationMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMetadataView.swift; sourceTree = "<group>"; };
+		3E2204482B73DBF9005F76BC /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		3E7C8D712B6F524F006EF51B /* Launchpad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launchpad.entitlements; sourceTree = "<group>"; };
+		3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistoryFetcher.swift; sourceTree = "<group>"; };
+		3ED57F022B717F7C00B653A0 /* NotificationHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistoryStore.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E0C412E2B6F3C02002A642D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ECEE0722B705160007A0232 /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E0C41282B6F3C02002A642D = {
+			isa = PBXGroup;
+			children = (
+				3E0C41332B6F3C02002A642D /* Launchpad */,
+				3E0C41322B6F3C02002A642D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E0C41322B6F3C02002A642D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E0C41312B6F3C02002A642D /* Launchpad.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E0C41332B6F3C02002A642D /* Launchpad */ = {
+			isa = PBXGroup;
+			children = (
+				3E1650722B701D8A00EF446B /* Models */,
+				3E7C8D712B6F524F006EF51B /* Launchpad.entitlements */,
+				3E0C41362B6F3C02002A642D /* ContentView.swift */,
+				3E1650542B6F672400EF446B /* DelegateStateBridge.swift */,
+				3E0C41342B6F3C02002A642D /* LaunchpadApp.swift */,
+				3E1650702B6F7F2500EF446B /* NotificationHistoryView.swift */,
+				3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */,
+				3E1650752B70333E00EF446B /* NotificationMetadataView.swift */,
+				3E0C41382B6F3C03002A642D /* Assets.xcassets */,
+				3E0C413A2B6F3C03002A642D /* Preview Content */,
+			);
+			path = Launchpad;
+			sourceTree = "<group>";
+		};
+		3E0C413A2B6F3C03002A642D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3E0C413B2B6F3C03002A642D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3E1650722B701D8A00EF446B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E1650732B701D9800EF446B /* NotificationMetadata.swift */,
+				3ED57F022B717F7C00B653A0 /* NotificationHistoryStore.swift */,
+				3E2204482B73DBF9005F76BC /* Secrets.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E0C41302B6F3C02002A642D /* Launchpad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E0C413F2B6F3C03002A642D /* Build configuration list for PBXNativeTarget "Launchpad" */;
+			buildPhases = (
+				3E0C412D2B6F3C02002A642D /* Sources */,
+				3E0C412E2B6F3C02002A642D /* Frameworks */,
+				3E0C412F2B6F3C02002A642D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Launchpad;
+			packageProductDependencies = (
+				3ECEE0712B705160007A0232 /* Alamofire */,
+			);
+			productName = Launchpad;
+			productReference = 3E0C41312B6F3C02002A642D /* Launchpad.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E0C41292B6F3C02002A642D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					3E0C41302B6F3C02002A642D = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 3E0C412C2B6F3C02002A642D /* Build configuration list for PBXProject "Launchpad" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3E0C41282B6F3C02002A642D;
+			packageReferences = (
+				3ECEE0702B705160007A0232 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
+			productRefGroup = 3E0C41322B6F3C02002A642D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E0C41302B6F3C02002A642D /* Launchpad */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E0C412F2B6F3C02002A642D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E0C413C2B6F3C03002A642D /* Preview Assets.xcassets in Resources */,
+				3E0C41392B6F3C03002A642D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E0C412D2B6F3C02002A642D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E1650712B6F7F2500EF446B /* NotificationHistoryView.swift in Sources */,
+				3E2204492B73DBF9005F76BC /* Secrets.swift in Sources */,
+				3E1650742B701D9800EF446B /* NotificationMetadata.swift in Sources */,
+				3E0C41372B6F3C02002A642D /* ContentView.swift in Sources */,
+				3E1650552B6F672400EF446B /* DelegateStateBridge.swift in Sources */,
+				3E1650762B70333E00EF446B /* NotificationMetadataView.swift in Sources */,
+				3ECEE06F2B705086007A0232 /* NotificationHistoryFetcher.swift in Sources */,
+				3E0C41352B6F3C02002A642D /* LaunchpadApp.swift in Sources */,
+				3ED57F032B717F7C00B653A0 /* NotificationHistoryStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3E0C413D2B6F3C03002A642D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3E0C413E2B6F3C03002A642D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E0C41402B6F3C03002A642D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Launchpad/Launchpad.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Launchpad/Preview Content\"";
+				DEVELOPMENT_TEAM = 839U72R654;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.Launchpad;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E0C41412B6F3C03002A642D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Launchpad/Launchpad.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Launchpad/Preview Content\"";
+				DEVELOPMENT_TEAM = 839U72R654;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.Launchpad;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E0C412C2B6F3C02002A642D /* Build configuration list for PBXProject "Launchpad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E0C413D2B6F3C03002A642D /* Debug */,
+				3E0C413E2B6F3C03002A642D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E0C413F2B6F3C03002A642D /* Build configuration list for PBXNativeTarget "Launchpad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E0C41402B6F3C03002A642D /* Debug */,
+				3E0C41412B6F3C03002A642D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3ECEE0702B705160007A0232 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3ECEE0712B705160007A0232 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3ECEE0702B705160007A0232 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 3E0C41292B6F3C02002A642D /* Project object */;
+}
