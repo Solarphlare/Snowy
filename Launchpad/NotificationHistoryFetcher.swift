@@ -6,7 +6,7 @@ enum RequestError: Error {
 }
 
 func fetchNotificationHistory(after: Double?) async throws -> Data {
-    let request = AF.request("http://\(HISTORY_ENDPOINT_DOMAIN)/notification-history\(after != nil ? "?after=\(after!)" : "")", headers: ["Authorization": "Token \(HISTORY_AUTH_TOKEN)"])
+    let request = AF.request("http://\(HISTORY_ENDPOINT_DOMAIN)/notification-history\(after != nil ? String(format: "?after=%.0f", after!) : "")", headers: ["Authorization": "Token \(HISTORY_AUTH_TOKEN)"])
     let response = await request.serializingString().response
     
     if let error = response.error {

@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("APNS"), footer: Text("The APNs token can be used to send notifications to your device. Make sure to keep it secret, as it can't be regenerated.")) {
+                Section {
                     LabeledContent {
                         VStack(alignment: .trailing) {
                             Text(delegateStateBridge.isRegisteredWithAPNS ? "Registered" : "Unregistered")
@@ -54,12 +54,24 @@ struct ContentView: View {
                     }) {
                         Text(delegateStateBridge.isRegisteredWithAPNS ? "Re-register with APNs" : "Request APNs Registration")
                     }
+                } header: {
+                    Text("APNs")
+                } footer: {
+                    if (delegateStateBridge.isRegisteredWithAPNS) {
+                        Text("Re-register with APNs, receiving a new token in the process. Use this only if notifications aren't being received.")
+                    }
+                }
+                Section {
                     ShareLink(item: UserDefaults.standard.string(forKey: "apns_token") ?? "No value provided") {
                         Text("Export APNs Token")
                     }
                     .disabled(!delegateStateBridge.isRegisteredWithAPNS)
+                } header: {
+                    Text("Token")
+                } footer: {
+                    Text("The APNs token can be used to send notifications to your device. Make sure to keep it secret, as it can't be regenerated.")
                 }
-                Section(header: Text("Notifications")) {
+                Section {
                     if attemptedFetch {
                         NavigationLink(destination: NotificationHistoryView()) {
                             VStack(alignment: .leading) {
@@ -80,7 +92,7 @@ struct ContentView: View {
                             ProgressView()
                         }
                     }
-                }
+                } header: { Text("Notifications") }
             }
             .navigationTitle("Launchpad")
             .onChange(of: delegateStateBridge.didRegistrationSucceed) { _, newValue in
@@ -116,11 +128,19 @@ struct ContentView: View {
                 }
                 
                 Task {
-                    let after = historyStore.history.isEmpty ? nil : historyStore.history[0].posted.timeIntervalSince1970
+                    try? await historyStore.load()
+                    
+                    let isHistoryStreEmpty = historyStore.history.isEmpty
+                    let after = isHistoryStreEmpty ? nil : historyStore.history[0].posted.timeIntervalSince1970
                     let historyData = try? await fetchNotificationHistory(after: after)
                     guard let historyData else {
                         DispatchQueue.main.async {
-                            notificationHistorySubtext = "Unable to get notification history"
+                            if (isHistoryStreEmpty) {
+                                notificationHistorySubtext = "Unable to get notification history"
+                            }
+                            else {
+                                notificationHistorySubtext = "Last known notification posted \(RelativeDateTimeFormatter().localizedString(for: historyStore.history[0].posted, relativeTo: .now))"
+                            }
                             withAnimation {
                                 attemptedFetch = true
                             }
@@ -131,7 +151,12 @@ struct ContentView: View {
                     let history = try? JSONDecoder().decode([NotificationMetadata].self, from: historyData)
                     guard let history else {
                         DispatchQueue.main.async {
-                            notificationHistorySubtext = "Unable to get notification history"
+                            if (isHistoryStreEmpty) {
+                                notificationHistorySubtext = "Unable to get notification history"
+                            }
+                            else {
+                                notificationHistorySubtext = "Last known notification posted \(RelativeDateTimeFormatter().localizedString(for: historyStore.history[0].posted, relativeTo: .now))"
+                            }
                             withAnimation {
                                 attemptedFetch = true
                             }

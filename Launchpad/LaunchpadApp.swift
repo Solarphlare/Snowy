@@ -12,14 +12,7 @@ struct LaunchpadApp: App {
             ContentView()
                 .environmentObject(historyStore)
                 .environmentObject(delegateStateBridge)
-                .task {
-                    do {
-                        try await historyStore.load()
-                    }
-                    catch {
-                        NSLog(error.localizedDescription)
-                    }
-                }
+            
                 .onAppear {
                     appDelegate.delegateStateBridge = delegateStateBridge
                 }

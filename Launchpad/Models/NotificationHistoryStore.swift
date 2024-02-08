@@ -3,7 +3,7 @@ import Foundation
 class NotificationHistoryStore: ObservableObject {
     @Published var history: [NotificationMetadata] = []
     static func getFileURL() throws -> URL {
-        try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent("history.json", conformingTo: .json)
     }
     
