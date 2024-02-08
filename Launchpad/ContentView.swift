@@ -149,7 +149,7 @@ struct ContentView: View {
                     }
                     
                     let history = try? JSONDecoder().decode([NotificationMetadata].self, from: historyData)
-                    guard let history else {
+                    guard var history else {
                         DispatchQueue.main.async {
                             if (isHistoryStreEmpty) {
                                 notificationHistorySubtext = "Unable to get notification history"
@@ -164,10 +164,12 @@ struct ContentView: View {
                         return
                     }
                     
-                    if history.isEmpty {
+                    if history.isEmpty && historyStore.history.isEmpty {
                         notificationHistorySubtext = "No notifications posted yet"
                     }
-                    else {
+                    else if (!history.isEmpty || !historyStore.history.isEmpty) {
+                        history.append(contentsOf: historyStore.history)
+                        
                         notificationHistorySubtext = "Last notification posted \(RelativeDateTimeFormatter().localizedString(for: history[0].posted, relativeTo: .now))"
                         
                         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
