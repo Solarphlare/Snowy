@@ -9,6 +9,7 @@ struct ContentView: View {
     @State private var isNotificationPermissionAlertPresented = false
     @State private var notificationHistorySubtext: String?
     @State private var attemptedFetch = false
+    @State private var timer: Timer?
     
     var body: some View {
         NavigationStack {
@@ -69,7 +70,7 @@ struct ContentView: View {
                 } header: {
                     Text("Token")
                 } footer: {
-                    Text("The APNs token can be used to send notifications to your device. Make sure to keep it secret, as it can't be regenerated.")
+                    Text("The APNs token can be used to send notifications to your device. Make sure to keep it a secret.")
                 }
                 Section {
                     if attemptedFetch {
@@ -128,6 +129,9 @@ struct ContentView: View {
                 }
                 
                 Task {
+                    timer?.invalidate()
+                    timer = nil
+                    
                     try? await historyStore.load()
                     
                     let isHistoryStreEmpty = historyStore.history.isEmpty
@@ -172,7 +176,7 @@ struct ContentView: View {
                         
                         notificationHistorySubtext = "Last notification posted \(RelativeDateTimeFormatter().localizedString(for: history[0].posted, relativeTo: .now))"
                         
-                        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                             DispatchQueue.main.async {
                                 let relativeFormatter = RelativeDateTimeFormatter()
                                 notificationHistorySubtext = "Last notification posted \(relativeFormatter.localizedString(for: history[0].posted, relativeTo: .now))"

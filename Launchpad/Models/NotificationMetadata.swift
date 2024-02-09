@@ -42,7 +42,7 @@ struct NotificationMetadata: Identifiable, Codable {
     
     static let sampleData = [
         NotificationMetadata(
-            topic: "Server Maintainence",
+            topic: "Server Maintenance",
             posted: Date(timeIntervalSince1970: 1707061300),
             id: "24efe19f-d86d-443f-a208-e8ae21292dfb",
             payload: NotificationPayload(
