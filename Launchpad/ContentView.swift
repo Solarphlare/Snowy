@@ -59,7 +59,7 @@ struct ContentView: View {
                     Text("APNs")
                 } footer: {
                     if (delegateStateBridge.isRegisteredWithAPNS) {
-                        Text("Re-register with APNs, receiving a new token in the process. Use this only if notifications aren't being received.")
+                        Text("Re-register with APNs, receiving a new token in the process. Use this only if notifications aren't being received by your device.")
                     }
                 }
                 Section {

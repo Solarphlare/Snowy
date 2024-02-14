@@ -12,7 +12,6 @@ struct LaunchpadApp: App {
             ContentView()
                 .environmentObject(historyStore)
                 .environmentObject(delegateStateBridge)
-            
                 .onAppear {
                     appDelegate.delegateStateBridge = delegateStateBridge
                 }

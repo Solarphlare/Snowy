@@ -18,7 +18,6 @@
 		3E2204492B73DBF9005F76BC /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2204482B73DBF9005F76BC /* Secrets.swift */; };
 		3E4B17B82B74229D005C302E /* NotificationMetadataArraySorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4B17B72B74229D005C302E /* NotificationMetadataArraySorter.swift */; };
 		3ECEE06F2B705086007A0232 /* NotificationHistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */; };
-		3ECEE0722B705160007A0232 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3ECEE0712B705160007A0232 /* Alamofire */; };
 		3ED57F032B717F7C00B653A0 /* NotificationHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED57F022B717F7C00B653A0 /* NotificationHistoryStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ECEE0722B705160007A0232 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +118,6 @@
 			);
 			name = Launchpad;
 			packageProductDependencies = (
-				3ECEE0712B705160007A0232 /* Alamofire */,
 			);
 			productName = Launchpad;
 			productReference = 3E0C41312B6F3C02002A642D /* Launchpad.app */;
@@ -151,7 +148,6 @@
 			);
 			mainGroup = 3E0C41282B6F3C02002A642D;
 			packageReferences = (
-				3ECEE0702B705160007A0232 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 3E0C41322B6F3C02002A642D /* Products */;
 			projectDirPath = "";
@@ -321,7 +317,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Launchpad/Launchpad.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Launchpad/Preview Content\"";
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_PREVIEWS = YES;
@@ -336,7 +332,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.Launchpad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -356,7 +352,7 @@
 				CODE_SIGN_ENTITLEMENTS = Launchpad/Launchpad.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Launchpad/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 839U72R654;
@@ -372,7 +368,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.Launchpad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -408,25 +404,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		3ECEE0702B705160007A0232 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.8.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		3ECEE0712B705160007A0232 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3ECEE0702B705160007A0232 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E0C41292B6F3C02002A642D /* Project object */;
 }
