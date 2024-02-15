@@ -136,7 +136,7 @@ struct ContentView: View {
                     
                     let isHistoryStreEmpty = historyStore.history.isEmpty
                     let after = isHistoryStreEmpty ? nil : historyStore.history[0].posted.timeIntervalSince1970
-                    let historyData = try? await fetchNotificationHistory(after: after)
+                    let historyData = try? await fetchNotificationHistory(after: nil)
                     guard let historyData else {
                         DispatchQueue.main.async {
                             if (isHistoryStreEmpty) {
@@ -171,9 +171,7 @@ struct ContentView: View {
                     if history.isEmpty && historyStore.history.isEmpty {
                         notificationHistorySubtext = "No notifications posted yet"
                     }
-                    else if (!history.isEmpty || !historyStore.history.isEmpty) {
-                        history.append(contentsOf: historyStore.history)
-                        
+                    else {
                         notificationHistorySubtext = "Last notification posted \(RelativeDateTimeFormatter().localizedString(for: history[0].posted, relativeTo: .now))"
                         
                         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
