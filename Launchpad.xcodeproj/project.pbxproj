@@ -19,6 +19,7 @@
 		3E4B17B82B74229D005C302E /* NotificationMetadataArraySorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4B17B72B74229D005C302E /* NotificationMetadataArraySorter.swift */; };
 		3ECEE06F2B705086007A0232 /* NotificationHistoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */; };
 		3ED57F032B717F7C00B653A0 /* NotificationHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED57F022B717F7C00B653A0 /* NotificationHistoryStore.swift */; };
+		3EE7A24C2B7EBB9F00A09A61 /* TokenUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE7A24B2B7EBB9F00A09A61 /* TokenUpdater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		3E7C8D712B6F524F006EF51B /* Launchpad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launchpad.entitlements; sourceTree = "<group>"; };
 		3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistoryFetcher.swift; sourceTree = "<group>"; };
 		3ED57F022B717F7C00B653A0 /* NotificationHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistoryStore.swift; sourceTree = "<group>"; };
+		3EE7A24B2B7EBB9F00A09A61 /* TokenUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUpdater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */,
 				3E4B17B72B74229D005C302E /* NotificationMetadataArraySorter.swift */,
 				3E1650752B70333E00EF446B /* NotificationMetadataView.swift */,
+				3EE7A24B2B7EBB9F00A09A61 /* TokenUpdater.swift */,
 				3E0C41382B6F3C03002A642D /* Assets.xcassets */,
 				3E0C413A2B6F3C03002A642D /* Preview Content */,
 			);
@@ -185,6 +188,7 @@
 				3ECEE06F2B705086007A0232 /* NotificationHistoryFetcher.swift in Sources */,
 				3E0C41352B6F3C02002A642D /* LaunchpadApp.swift in Sources */,
 				3ED57F032B717F7C00B653A0 /* NotificationHistoryStore.swift in Sources */,
+				3EE7A24C2B7EBB9F00A09A61 /* TokenUpdater.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +321,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Launchpad/Launchpad.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Launchpad/Preview Content\"";
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_PREVIEWS = YES;
@@ -332,7 +336,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.Launchpad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -352,7 +356,7 @@
 				CODE_SIGN_ENTITLEMENTS = Launchpad/Launchpad.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"Launchpad/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 839U72R654;
@@ -368,7 +372,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cominatyou.Launchpad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -10,6 +10,7 @@ struct ContentView: View {
     @State private var notificationHistorySubtext: String?
     @State private var attemptedFetch = false
     @State private var timer: Timer?
+    @State private var hasRunInitBefore = false
     
     var body: some View {
         NavigationStack {
@@ -128,6 +129,13 @@ struct ContentView: View {
                     return
                 }
                 
+                if (!hasRunInitBefore && UIApplication.shared.isRegisteredForRemoteNotifications) {
+                    NSLog("Running init block")
+                    UIApplication.shared.registerForRemoteNotifications()
+                    
+                    hasRunInitBefore = true
+                }
+                
                 Task {
                     timer?.invalidate()
                     timer = nil
@@ -135,25 +143,9 @@ struct ContentView: View {
                     try? await historyStore.load()
                     
                     let isHistoryStreEmpty = historyStore.history.isEmpty
-                    let after = isHistoryStreEmpty ? nil : historyStore.history[0].posted.timeIntervalSince1970
-                    let historyData = try? await fetchNotificationHistory(after: nil)
-                    guard let historyData else {
-                        DispatchQueue.main.async {
-                            if (isHistoryStreEmpty) {
-                                notificationHistorySubtext = "Unable to get notification history"
-                            }
-                            else {
-                                notificationHistorySubtext = "Last known notification posted \(RelativeDateTimeFormatter().localizedString(for: historyStore.history[0].posted, relativeTo: .now))"
-                            }
-                            withAnimation {
-                                attemptedFetch = true
-                            }
-                        }
-                        return
-                    }
-                    
-                    let history = try? JSONDecoder().decode([NotificationMetadata].self, from: historyData)
-                    guard var history else {
+                    let after = isHistoryStreEmpty ? nil : historyStore.history[0].posted
+                    let history = try? await fetchNotificationHistory(after: nil)
+                    guard let history else {
                         DispatchQueue.main.async {
                             if (isHistoryStreEmpty) {
                                 notificationHistorySubtext = "Unable to get notification history"

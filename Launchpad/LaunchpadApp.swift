@@ -30,8 +30,25 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     var delegateStateBridge: DelegateStateBridge?
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        NSLog("Successfully registered with APNS")
         let tokenAsHex = deviceToken.map { String(format: "%02x", $0) }.joined()
+        
+        // Don't update anything if the new token is the same as the old one
+        if let previousToken = UserDefaults.standard.string(forKey: "apns_token") {
+            if previousToken == tokenAsHex { return }
+        }
+        
+        Task {
+            do {
+                try await updateRemoteToken(token: tokenAsHex)
+                NSLog("Successfully updated APNs token.")
+            }
+            catch {
+                NSLog(error.localizedDescription)
+                return
+            }
+        }
+        
+        NSLog("Successfully registered with APNS")
         NSLog("Got token: \(tokenAsHex)")
         UserDefaults.standard.setValue(tokenAsHex, forKey: "apns_token")
         UserDefaults.standard.setValue(Date.now.timeIntervalSince1970, forKey: "last_registered")

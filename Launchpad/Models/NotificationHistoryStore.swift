@@ -1,12 +1,18 @@
 import Foundation
 
+/// A class for saving a local cache of the Notification History to disk.
 class NotificationHistoryStore: ObservableObject {
     @Published var history: [NotificationMetadata] = []
+    
+    /// Gets the URL for the cache file.
+    /// - Returns: The URL for the cache file.
     static func getFileURL() throws -> URL {
         try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent("history.json", conformingTo: .json)
     }
     
+    /// Reads the cached notification history from the file returned from `getFileURL()`, and stores it in `history`.
+    /// - Throws: Throws an error if the function is unable to get the file URL, unable to read the file, or unable to parse the file.
     func load() async throws {
         let task = Task<[NotificationMetadata], Error> {
             let fileURL = try Self.getFileURL()
@@ -23,6 +29,7 @@ class NotificationHistoryStore: ObservableObject {
         }
     }
     
+    /// Writes the contents of `history` to the file returned from `getFileURL()`.
     func write() {
         Task {
             do {
