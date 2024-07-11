@@ -14,7 +14,7 @@ func fetchNotificationHistory(after: Date?) async throws -> [NotificationMetadat
     #elseif targetEnvironment(macCatalyst) || os(macOS)
     let device = "mac"
     #else
-    let device = UIDevice.current.userInterfaceIdiom == .phone ? "iphone" : "ipad"
+    let device = await UIDevice.current.userInterfaceIdiom == .phone ? "iphone" : "ipad"
     #endif
     
     
