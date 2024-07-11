@@ -9,7 +9,14 @@ enum RequestError: Error {
 /// - Parameter after: Used to only return history entries after the specified date.
 /// - Returns: An array of NotificationMetadata objects. The array will be empty if there isn't any notification history yet, or if there is no history after the Date specified in the `after` parameter.
 func fetchNotificationHistory(after: Date?) async throws -> [NotificationMetadata] {
-    let device = await UIDevice.current.userInterfaceIdiom == .phone ? "iphone" : "ipad"
+    #if targetEnvironment(simulator)
+    let device = "simulator"
+    #elseif targetEnvironment(macCatalyst) || os(macOS)
+    let device = "mac"
+    #else
+    let device = UIDevice.current.userInterfaceIdiom == .phone ? "iphone" : "ipad"
+    #endif
+    
     
     var request = URLRequest(url: URL(string: "\(HISTORY_ENDPOINT_DOMAIN)/notifications/history?device=\(device)\(after != nil ? String(format: "&after=%.0f", after!.timeIntervalSince1970) : "")")!)
     
