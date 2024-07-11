@@ -143,12 +143,12 @@ struct ContentView: View {
                     try? await historyStore.load()
                     
                     let isHistoryStreEmpty = historyStore.history.isEmpty
-                    let after = isHistoryStreEmpty ? nil : historyStore.history[0].posted
+//                    let after = isHistoryStreEmpty ? nil : historyStore.history[0].posted
                     let history = try? await fetchNotificationHistory(after: nil)
                     guard let history else {
                         DispatchQueue.main.async {
                             if (isHistoryStreEmpty) {
-                                notificationHistorySubtext = "Unable to get notification history"
+                                notificationHistorySubtext = "No notifications posted yet"
                             }
                             else {
                                 notificationHistorySubtext = "Last known notification posted \(RelativeDateTimeFormatter().localizedString(for: historyStore.history[0].posted, relativeTo: .now))"
