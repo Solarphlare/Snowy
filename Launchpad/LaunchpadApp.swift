@@ -26,10 +26,16 @@ struct LaunchpadApp: App {
     }
 }
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var delegateStateBridge: DelegateStateBridge?
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        UNUserNotificationCenter.current().delegate = self
+        
+        let openUrlAction = UNNotificationAction(identifier: "OPEN_URL", title: "Open Link", options: [.foreground])
+        let urlCategory = UNNotificationCategory(identifier: "URL_NOTIFICATION", actions: [openUrlAction], intentIdentifiers: [])
+        UNUserNotificationCenter.current().setNotificationCategories([urlCategory])
+        
         let tokenAsHex = deviceToken.map { String(format: "%02x", $0) }.joined()
         
         // Don't update anything if the new token is the same as the old one
@@ -62,5 +68,19 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         NSLog("Failed to register with APNS")
         NSLog(error.localizedDescription)
         delegateStateBridge?.didRegistrationSucceed = false
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        NSLog("didRecieve called with action identifier: \(response.actionIdentifier)")
+        
+        if ([UNNotificationDefaultActionIdentifier, "OPEN_URL"].contains(response.actionIdentifier)) {
+            guard let launchUrl = response.notification.request.content.userInfo["launch_url"] as? String else {
+                return
+            }
+            
+            NSLog("Got launch URL: \(launchUrl)")
+            
+            await UIApplication.shared.open(URL(string: launchUrl)!)
+        }
     }
 }
