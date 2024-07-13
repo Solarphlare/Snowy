@@ -13,16 +13,14 @@ struct NotificationMetadataView: View {
                         Text("Topic")
                     }
                     LabeledContent {
-                        HStack(spacing: 4) {
                             Text(notification.posted.formatted(
                                 date: .numeric,
                                 time: .omitted
-                            ))
+                            )) + Text(" ") +
                             Text(notification.posted.formatted(
                                 date: .omitted,
                                 time: .shortened
                             ))
-                        }
                     } label: {
                         Text("Creation Time")
                     }
