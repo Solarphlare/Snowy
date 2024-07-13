@@ -72,8 +72,10 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         NSLog("didRecieve called with action identifier: \(response.actionIdentifier)")
+        let userInfo = response.notification.request.content.userInfo
+        let aps = userInfo["aps"] as! [String : Any]
         
-        if ([UNNotificationDefaultActionIdentifier, "OPEN_URL"].contains(response.actionIdentifier)) {
+        if ([UNNotificationDefaultActionIdentifier, "OPEN_URL"].contains(response.actionIdentifier) && aps["category"] as? String == "URL_NOTIFICATION") {
             guard let launchUrl = response.notification.request.content.userInfo["launch_url"] as? String else {
                 return
             }
