@@ -8,16 +8,18 @@ struct NotificationPayload: Codable {
 struct NotificationMetadata: Identifiable, Codable {
     let topic: String
     let posted: Date
+    let category: String?
     let id: String
     let payload: NotificationPayload
     
     enum CodingKeys: String, CodingKey {
-        case topic, posted, id, payload
+        case topic, posted, category, id, payload
     }
     
-    init(topic: String, posted: Date, id: String, payload: NotificationPayload) {
+    private init(topic: String, posted: Date, category: String?, id: String, payload: NotificationPayload) {
         self.topic = topic
         self.posted = posted
+        self.category = category
         self.id = id
         self.payload = payload
     }
@@ -26,6 +28,7 @@ struct NotificationMetadata: Identifiable, Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.topic = try container.decode(String.self, forKey: .topic)
         self.id = try container.decode(String.self, forKey: .id)
+        self.category = try container.decodeIfPresent(String.self, forKey: .category)
         self.payload = try container.decode(NotificationPayload.self, forKey: .payload)
 
         let postedString = try container.decode(Double.self, forKey: .posted)
@@ -44,6 +47,7 @@ struct NotificationMetadata: Identifiable, Codable {
         NotificationMetadata(
             topic: "Server Maintenance",
             posted: Date(timeIntervalSince1970: 1707061300),
+            category: nil,
             id: "24efe19f-d86d-443f-a208-e8ae21292dfb",
             payload: NotificationPayload(
                 title: "Server Update Complete",
@@ -53,6 +57,7 @@ struct NotificationMetadata: Identifiable, Codable {
         NotificationMetadata(
             topic: "Parcel Update",
             posted: Date(timeIntervalSince1970: 1706950300),
+            category: nil,
             id: "24efe19f-d86d-443f-a608-e8ae21292dfc",
             payload: NotificationPayload(
                 title: "Parcel Received",
@@ -62,6 +67,7 @@ struct NotificationMetadata: Identifiable, Codable {
         NotificationMetadata(
             topic: "Server Status",
             posted: Date(timeIntervalSince1970: 1706640100),
+            category: "URL_NOTIFICATION",
             id: "19efe19f-d86d-443f-a608-e8ae21292dfc",
             payload: NotificationPayload(
                 title: "Server Offline",

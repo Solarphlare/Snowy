@@ -24,6 +24,13 @@ struct NotificationMetadataView: View {
                     } label: {
                         Text("Creation Time")
                     }
+                    if let category = notification.category {
+                        LabeledContent {
+                            Text(category)
+                        } label: {
+                            Text("Category")
+                        }
+                    }
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Identifier")
                         Text(notification.id.map { "\($0)\u{200b}"}.joined() )
@@ -51,5 +58,5 @@ struct NotificationMetadataView: View {
 }
 
 #Preview {
-    NotificationMetadataView(notification: NotificationMetadata.sampleData[1])
+    NotificationMetadataView(notification: NotificationMetadata.sampleData[2])
 }
