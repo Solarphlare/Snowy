@@ -46,7 +46,10 @@ class AppDelegate: NSObject, ApplicationDelegate, UNUserNotificationCenterDelega
         UNUserNotificationCenter.current().setNotificationCategories([urlCategory])
         
         let tokenAsHex = deviceToken.map { String(format: "%02x", $0) }.joined()
+        
+        #if DEBUG
         NSLog("Got token: \(tokenAsHex)")
+        #endif
         
         // Don't update anything if the new token is the same as the old one
         if let previousToken = UserDefaults.standard.string(forKey: "apns_token") {
