@@ -191,15 +191,18 @@ extension ContentView {
     }
     
     func registrationButtonAction() async {
+        NSLog("APNs registration requested by user")
         let center = UNUserNotificationCenter.current()
         do {
             try await center.requestAuthorization(options: [.alert, .sound, .badge])
             let settings = await center.notificationSettings()
             
             if (settings.authorizationStatus == .authorized) {
+                NSLog("Registering for remote notifications...")
                 ApplicationType.shared.registerForRemoteNotifications()
             }
             else {
+                NSLog("Failed to register for remote notifications as user did not grant notification permissions")
                 isNotificationPermissionAlertPresented = true
             }
         }
