@@ -63,7 +63,9 @@ struct NotificationHistoryView: View {
                 }
             }
             .navigationTitle("Notification History")
+            #if targetEnvironment(macCatalyst) || os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .searchable(text: $searchQuery)
         }
     }

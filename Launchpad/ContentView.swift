@@ -1,5 +1,6 @@
 import SwiftUI
 import PushKit
+import UserNotifications
 
 struct ContentView: View {
     @AppStorage("last_registered") var lastRegistered: Double?
@@ -36,23 +37,7 @@ struct ContentView: View {
                         }
                     }
                     Button(action: {
-                        let center = UNUserNotificationCenter.current()
-                        Task {
-                            do {
-                                try await center.requestAuthorization(options: [.alert, .sound, .badge])
-                                let settings = await center.notificationSettings()
-                                
-                                if (settings.authorizationStatus == .authorized) {
-                                    UIApplication.shared.registerForRemoteNotifications()
-                                }
-                                else {
-                                    isNotificationPermissionAlertPresented = true
-                                }
-                            }
-                           catch {
-                               NSLog("Failed to request notification permission")
-                           }
-                        }
+                        Task { await registrationButtonAction() }
                     }) {
                         Text(delegateStateBridge.isRegisteredWithAPNS ? "Re-register with APNs" : "Request APNs Registration")
                     }
@@ -96,6 +81,7 @@ struct ContentView: View {
                     }
                 } header: { Text("Notifications") }
             }
+            .formStyle(.grouped)
             .navigationTitle("Launchpad")
             .onChange(of: delegateStateBridge.didRegistrationSucceed) { _, newValue in
                 NSLog("onChange listener notified of change, got value of \(newValue?.description ?? "nil")")
@@ -109,78 +95,17 @@ struct ContentView: View {
                     title: Text("Notifications Disabled"),
                     message: Text("We can't register with APNs until you grant the notification permission in Settings. Please enable the permission in order to continue."),
                     primaryButton: .default(Text("Open Settings")) {
+                        #if os(macOS)
+                        NSWorkspace().open(URL(string: "x-apple.systempreferences:com.apple.preference.notifications")!)
+                        #else
                         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                        #endif
                     },
                     secondaryButton: .cancel()
                 )
             }
             .onAppear {
-                if (ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1") {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        withAnimation {
-                            historyStore.history = NotificationMetadata.sampleData
-                            let relativeFormatter = RelativeDateTimeFormatter()
-                            notificationHistorySubtext = "Last notification posted \(relativeFormatter.localizedString(for: historyStore.history[0].posted, relativeTo: .now))"
-                            
-                            attemptedFetch = true
-                        }
-                    }
-                    
-                    return
-                }
-                
-                if (!hasRunInitBefore && UIApplication.shared.isRegisteredForRemoteNotifications) {
-                    NSLog("Running init block")
-                    UIApplication.shared.registerForRemoteNotifications()
-                    
-                    hasRunInitBefore = true
-                }
-                
-                Task {
-                    timer?.invalidate()
-                    timer = nil
-                    
-                    try? await historyStore.load()
-                    
-                    let isHistoryStreEmpty = historyStore.history.isEmpty
-//                    let after = isHistoryStreEmpty ? nil : historyStore.history[0].posted
-                    let history = try? await fetchNotificationHistory(after: nil)
-                    guard let history else {
-                        DispatchQueue.main.async {
-                            if (isHistoryStreEmpty) {
-                                notificationHistorySubtext = "No notifications posted yet"
-                            }
-                            else {
-                                notificationHistorySubtext = "Last known notification posted \(RelativeDateTimeFormatter().localizedString(for: historyStore.history[0].posted, relativeTo: .now))"
-                            }
-                            withAnimation {
-                                attemptedFetch = true
-                            }
-                        }
-                        return
-                    }
-                    
-                    if history.isEmpty && historyStore.history.isEmpty {
-                        notificationHistorySubtext = "No notifications posted yet"
-                    }
-                    else {
-                        notificationHistorySubtext = "Last notification posted \(RelativeDateTimeFormatter().localizedString(for: history[0].posted, relativeTo: .now))"
-                        
-                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                            DispatchQueue.main.async {
-                                let relativeFormatter = RelativeDateTimeFormatter()
-                                notificationHistorySubtext = "Last notification posted \(relativeFormatter.localizedString(for: history[0].posted, relativeTo: .now))"
-                            }
-                        }
-                    }
-                    
-                    withAnimation {
-                        attemptedFetch = true
-                        historyStore.history = history
-                    }
-                    
-                    historyStore.write()
-                }
+                loadStore()
             }
         }
     }
@@ -193,4 +118,93 @@ struct ContentView: View {
         .onAppear {
             UserDefaults.standard.setValue(15700000, forKey: "last_registered")
         }
+}
+
+extension ContentView {
+    func loadStore() {
+        if (ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation {
+                    historyStore.history = NotificationMetadata.sampleData
+                    let relativeFormatter = RelativeDateTimeFormatter()
+                    notificationHistorySubtext = "Last notification posted \(relativeFormatter.localizedString(for: historyStore.history[0].posted, relativeTo: .now))"
+                    
+                    attemptedFetch = true
+                }
+            }
+            
+            return
+        }
+        
+        if (!hasRunInitBefore && ApplicationType.shared.isRegisteredForRemoteNotifications) {
+            NSLog("Running init block")
+            ApplicationType.shared.registerForRemoteNotifications()
+            
+            hasRunInitBefore = true
+        }
+        
+        Task {
+            timer?.invalidate()
+            timer = nil
+            
+            try? await historyStore.load()
+            
+            let isHistoryStreEmpty = historyStore.history.isEmpty
+//                    let after = isHistoryStreEmpty ? nil : historyStore.history[0].posted
+            let history = try? await fetchNotificationHistory(after: nil)
+            guard let history else {
+                DispatchQueue.main.async {
+                    if (isHistoryStreEmpty) {
+                        notificationHistorySubtext = "No notifications posted yet"
+                    }
+                    else {
+                        notificationHistorySubtext = "Last known notification posted \(RelativeDateTimeFormatter().localizedString(for: historyStore.history[0].posted, relativeTo: .now))"
+                    }
+                    withAnimation {
+                        attemptedFetch = true
+                    }
+                }
+                return
+            }
+            
+            if history.isEmpty && historyStore.history.isEmpty {
+                notificationHistorySubtext = "No notifications posted yet"
+            }
+            else {
+                notificationHistorySubtext = "Last notification posted \(RelativeDateTimeFormatter().localizedString(for: history[0].posted, relativeTo: .now))"
+                
+                timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                    DispatchQueue.main.async {
+                        let relativeFormatter = RelativeDateTimeFormatter()
+                        notificationHistorySubtext = "Last notification posted \(relativeFormatter.localizedString(for: history[0].posted, relativeTo: .now))"
+                    }
+                }
+            }
+            
+            withAnimation {
+                attemptedFetch = true
+                historyStore.history = history
+            }
+            
+            historyStore.write()
+        }
+    }
+    
+    func registrationButtonAction() async {
+        let center = UNUserNotificationCenter.current()
+        do {
+            try await center.requestAuthorization(options: [.alert, .sound, .badge])
+            let settings = await center.notificationSettings()
+            
+            if (settings.authorizationStatus == .authorized) {
+                ApplicationType.shared.registerForRemoteNotifications()
+            }
+            else {
+                isNotificationPermissionAlertPresented = true
+            }
+        }
+       catch {
+           NSLog("Failed to request notification permission")
+       }
+    }
 }

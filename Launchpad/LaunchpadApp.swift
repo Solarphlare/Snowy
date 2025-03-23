@@ -1,9 +1,31 @@
+import Foundation
+import UserNotifications
 import SwiftUI
+
+#if canImport(UIKit)
+import UIKit
+#endif
+
+#if canImport(AppKit)
+import AppKit
+#endif
+
+#if os(macOS)
+typealias ApplicationDelegate = NSApplicationDelegate
+typealias ApplicationType = NSApplication
+#else
+typealias ApplicationDelegate = UIApplicationDelegate
+typealias ApplicationType = UIApplication
+#endif
 
 @main
 struct LaunchpadApp: App {
+    #if os(macOS)
+    @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+    #else
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
-    @ObservedObject var delegateStateBridge = DelegateStateBridge(isRegisteredWithAPNS: UIApplication.shared.isRegisteredForRemoteNotifications)
+    #endif
+    @ObservedObject var delegateStateBridge = DelegateStateBridge(isRegisteredWithAPNS: ApplicationType.shared.isRegisteredForRemoteNotifications)
     @Environment(\.scenePhase) var scenePhase
     @StateObject var historyStore = NotificationHistoryStore()
     
@@ -18,7 +40,7 @@ struct LaunchpadApp: App {
                 .onChange(of: scenePhase) { _, newPhase in
                     if newPhase == .active {
                         withAnimation {
-                            delegateStateBridge.isRegisteredWithAPNS = UIApplication.shared.isRegisteredForRemoteNotifications
+                            delegateStateBridge.isRegisteredWithAPNS = ApplicationType.shared.isRegisteredForRemoteNotifications
                         }
                     }
                 }
@@ -26,10 +48,10 @@ struct LaunchpadApp: App {
     }
 }
 
-class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: NSObject, ApplicationDelegate, UNUserNotificationCenterDelegate {
     var delegateStateBridge: DelegateStateBridge?
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    func application(_ application: ApplicationType, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         UNUserNotificationCenter.current().delegate = self
         
         let openUrlAction = UNNotificationAction(identifier: "OPEN_URL", title: "Open Link", options: [.foreground])
@@ -64,9 +86,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
         }
     }
     
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+    func application(_ application: ApplicationType, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         NSLog("Failed to register with APNS")
-        NSLog(error.localizedDescription)
+        NSLog(String(describing: error))
         delegateStateBridge?.didRegistrationSucceed = false
     }
     
@@ -82,7 +104,11 @@ class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDele
             
             NSLog("Got launch URL: \(launchUrl)")
             
+            #if os(macOS)
+            NSWorkspace().open(URL(string: launchUrl)!)
+            #else
             await UIApplication.shared.open(URL(string: launchUrl)!)
+            #endif
         }
     }
 }

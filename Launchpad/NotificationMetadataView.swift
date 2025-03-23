@@ -52,7 +52,9 @@ struct NotificationMetadataView: View {
                 }
             }
             .navigationTitle("Notification Details")
+            #if targetEnvironment(macCatalyst) || os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
     }
 }
