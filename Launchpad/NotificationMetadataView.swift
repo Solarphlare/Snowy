@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct NotificationMetadataView: View {
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     var notification: NotificationMetadata
     
     var body: some View {
@@ -31,11 +32,19 @@ struct NotificationMetadataView: View {
                             Text("Category")
                         }
                     }
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Identifier")
-                        Text(notification.id.map { "\($0)\u{200b}"}.joined() )
-                            .font(.system(size: 17))
-                            .foregroundStyle(.gray)
+                    if horizontalSizeClass == .compact {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Identifier")
+                            Text(notification.id.map { "\($0)\u{200b}" }.joined() )
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                    else {
+                        LabeledContent {
+                            Text(notification.id.map { "\($0)\u{200b}" }.joined() )
+                        } label: {
+                            Text("Identifier")
+                        }
                     }
                 }
                 Section(header: Text("Payload")) {
@@ -52,6 +61,7 @@ struct NotificationMetadataView: View {
                 }
             }
             .navigationTitle("Notification Details")
+            .formStyle(.grouped)
             #if targetEnvironment(macCatalyst) || os(iOS)
             .navigationBarTitleDisplayMode(.inline)
             #endif

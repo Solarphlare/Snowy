@@ -21,6 +21,7 @@ import AppKit
 class AppDelegate: NSObject, ApplicationDelegate, UNUserNotificationCenterDelegate {
     var delegateStateBridge: DelegateStateBridge?
     
+    #if !DEBUG
     #if !os(macOS)
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if let _ = UserDefaults.standard.string(forKey: "apns_token") {
@@ -34,6 +35,7 @@ class AppDelegate: NSObject, ApplicationDelegate, UNUserNotificationCenterDelega
             NSApplication.shared.registerForRemoteNotifications()
         }
     }
+    #endif
     #endif
     
     
@@ -57,6 +59,10 @@ class AppDelegate: NSObject, ApplicationDelegate, UNUserNotificationCenterDelega
                 UserDefaults.standard.setValue(tokenAsHex, forKey: "apns_token")
                 UserDefaults.standard.setValue(Date.now.timeIntervalSince1970, forKey: "last_registered")
             }
+        }
+        else {
+            UserDefaults.standard.setValue(tokenAsHex, forKey: "apns_token")
+            UserDefaults.standard.setValue(Date.now.timeIntervalSince1970, forKey: "last_registered")
         }
         
         NSLog("Successfully registered with APNs.")

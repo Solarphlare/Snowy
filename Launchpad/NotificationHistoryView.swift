@@ -67,6 +67,7 @@ struct NotificationHistoryView: View {
             .navigationBarTitleDisplayMode(.inline)
             #endif
             .searchable(text: $searchQuery)
+            .formStyle(.grouped)
         }
     }
     
