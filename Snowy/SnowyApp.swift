@@ -3,7 +3,7 @@ import UserNotifications
 import SwiftUI
 
 @main
-struct LaunchpadApp: App {
+struct SnowyApp: App {
     #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     #else

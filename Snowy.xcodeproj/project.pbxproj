@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E0C41352B6F3C02002A642D /* LaunchpadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C41342B6F3C02002A642D /* LaunchpadApp.swift */; };
+		3E0C41352B6F3C02002A642D /* SnowyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C41342B6F3C02002A642D /* SnowyApp.swift */; };
 		3E0C41372B6F3C02002A642D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0C41362B6F3C02002A642D /* ContentView.swift */; };
 		3E0C41392B6F3C03002A642D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C41382B6F3C03002A642D /* Assets.xcassets */; };
 		3E0C413C2B6F3C03002A642D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C413B2B6F3C03002A642D /* Preview Assets.xcassets */; };
@@ -24,8 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3E0C41312B6F3C02002A642D /* Launchpad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Launchpad.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E0C41342B6F3C02002A642D /* LaunchpadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchpadApp.swift; sourceTree = "<group>"; };
+		3E0C41312B6F3C02002A642D /* Snowy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snowy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E0C41342B6F3C02002A642D /* SnowyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowyApp.swift; sourceTree = "<group>"; };
 		3E0C41362B6F3C02002A642D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3E0C41382B6F3C03002A642D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E0C413B2B6F3C03002A642D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -35,7 +35,7 @@
 		3E1650752B70333E00EF446B /* NotificationMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMetadataView.swift; sourceTree = "<group>"; };
 		3E2204482B73DBF9005F76BC /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		3E4B17B72B74229D005C302E /* NotificationMetadataArraySorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMetadataArraySorter.swift; sourceTree = "<group>"; };
-		3E7C8D712B6F524F006EF51B /* Launchpad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Launchpad.entitlements; sourceTree = "<group>"; };
+		3E7C8D712B6F524F006EF51B /* Snowy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Snowy.entitlements; sourceTree = "<group>"; };
 		3E9F58CD2D90D032000E7E71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistoryFetcher.swift; sourceTree = "<group>"; };
 		3ED57F022B717F7C00B653A0 /* NotificationHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHistoryStore.swift; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		3E0C41282B6F3C02002A642D = {
 			isa = PBXGroup;
 			children = (
-				3E0C41332B6F3C02002A642D /* Launchpad */,
+				3E0C41332B6F3C02002A642D /* Snowy */,
 				3E0C41322B6F3C02002A642D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,19 +64,19 @@
 		3E0C41322B6F3C02002A642D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3E0C41312B6F3C02002A642D /* Launchpad.app */,
+				3E0C41312B6F3C02002A642D /* Snowy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3E0C41332B6F3C02002A642D /* Launchpad */ = {
+		3E0C41332B6F3C02002A642D /* Snowy */ = {
 			isa = PBXGroup;
 			children = (
 				3E1650722B701D8A00EF446B /* Models */,
-				3E7C8D712B6F524F006EF51B /* Launchpad.entitlements */,
+				3E7C8D712B6F524F006EF51B /* Snowy.entitlements */,
 				3E0C41362B6F3C02002A642D /* ContentView.swift */,
 				3E1650542B6F672400EF446B /* DelegateStateBridge.swift */,
-				3E0C41342B6F3C02002A642D /* LaunchpadApp.swift */,
+				3E0C41342B6F3C02002A642D /* SnowyApp.swift */,
 				3E1650702B6F7F2500EF446B /* NotificationHistoryView.swift */,
 				3ECEE06E2B705085007A0232 /* NotificationHistoryFetcher.swift */,
 				3E4B17B72B74229D005C302E /* NotificationMetadataArraySorter.swift */,
@@ -85,7 +85,7 @@
 				3E0C41382B6F3C03002A642D /* Assets.xcassets */,
 				3E0C413A2B6F3C03002A642D /* Preview Content */,
 			);
-			path = Launchpad;
+			path = Snowy;
 			sourceTree = "<group>";
 		};
 		3E0C413A2B6F3C03002A642D /* Preview Content */ = {
@@ -110,9 +110,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3E0C41302B6F3C02002A642D /* Launchpad */ = {
+		3E0C41302B6F3C02002A642D /* Snowy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E0C413F2B6F3C03002A642D /* Build configuration list for PBXNativeTarget "Launchpad" */;
+			buildConfigurationList = 3E0C413F2B6F3C03002A642D /* Build configuration list for PBXNativeTarget "Snowy" */;
 			buildPhases = (
 				3E0C412D2B6F3C02002A642D /* Sources */,
 				3E0C412E2B6F3C02002A642D /* Frameworks */,
@@ -122,11 +122,11 @@
 			);
 			dependencies = (
 			);
-			name = Launchpad;
+			name = Snowy;
 			packageProductDependencies = (
 			);
 			productName = Launchpad;
-			productReference = 3E0C41312B6F3C02002A642D /* Launchpad.app */;
+			productReference = 3E0C41312B6F3C02002A642D /* Snowy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -144,7 +144,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3E0C412C2B6F3C02002A642D /* Build configuration list for PBXProject "Launchpad" */;
+			buildConfigurationList = 3E0C412C2B6F3C02002A642D /* Build configuration list for PBXProject "Snowy" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -159,7 +159,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3E0C41302B6F3C02002A642D /* Launchpad */,
+				3E0C41302B6F3C02002A642D /* Snowy */,
 			);
 		};
 /* End PBXProject section */
@@ -190,7 +190,7 @@
 				3E1650552B6F672400EF446B /* DelegateStateBridge.swift in Sources */,
 				3E1650762B70333E00EF446B /* NotificationMetadataView.swift in Sources */,
 				3ECEE06F2B705086007A0232 /* NotificationHistoryFetcher.swift in Sources */,
-				3E0C41352B6F3C02002A642D /* LaunchpadApp.swift in Sources */,
+				3E0C41352B6F3C02002A642D /* SnowyApp.swift in Sources */,
 				3ED57F032B717F7C00B653A0 /* NotificationHistoryStore.swift in Sources */,
 				3EE7A24C2B7EBB9F00A09A61 /* TokenUpdater.swift in Sources */,
 			);
@@ -323,10 +323,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Launchpad/Launchpad.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Snowy/Snowy.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_ASSET_PATHS = "\"Launchpad/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Snowy/Preview Content\"";
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -359,11 +359,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Launchpad/Launchpad.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Snowy/Snowy.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_ASSET_PATHS = "\"Launchpad/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Snowy/Preview Content\"";
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -395,7 +395,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3E0C412C2B6F3C02002A642D /* Build configuration list for PBXProject "Launchpad" */ = {
+		3E0C412C2B6F3C02002A642D /* Build configuration list for PBXProject "Snowy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E0C413D2B6F3C03002A642D /* Debug */,
@@ -404,7 +404,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E0C413F2B6F3C03002A642D /* Build configuration list for PBXNativeTarget "Launchpad" */ = {
+		3E0C413F2B6F3C03002A642D /* Build configuration list for PBXNativeTarget "Snowy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3E0C41402B6F3C03002A642D /* Debug */,

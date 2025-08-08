@@ -82,7 +82,7 @@ struct ContentView: View {
                 } header: { Text("Notifications") }
             }
             .formStyle(.grouped)
-            .navigationTitle("Launchpad")
+            .navigationTitle("Snowy")
             .onChange(of: delegateStateBridge.didRegistrationSucceed) { _, newValue in
                 NSLog("onChange listener notified of change, got value of \(newValue?.description ?? "nil")")
                 isAlertPresented = newValue == false
