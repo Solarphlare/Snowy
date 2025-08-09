@@ -42,6 +42,9 @@ struct NotificationHistoryView: View {
             }
             .searchable(text: $searchQuery)
             .navigationBarBackButtonHidden()
+            .onAppear {
+                selection = searchResults.first?.notifications.first
+            }
         }
     }
     
