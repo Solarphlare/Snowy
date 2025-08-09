@@ -1,11 +1,11 @@
 import Foundation
 
-struct NotificationPayload: Codable {
+struct NotificationPayload: Codable, Hashable {
     let title: String
     let body: String
 }
 
-struct NotificationMetadata: Identifiable, Codable {
+struct NotificationMetadata: Identifiable, Codable, Hashable, Equatable {
     let topic: String
     let posted: Date
     let category: String?
@@ -41,6 +41,10 @@ struct NotificationMetadata: Identifiable, Codable {
         try container.encode(self.posted.timeIntervalSince1970, forKey: .posted)
         try container.encode(self.id, forKey: .id)
         try container.encode(self.payload, forKey: .payload)
+    }
+    
+    static func ==(lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
     }
     
     static let sampleData = [
