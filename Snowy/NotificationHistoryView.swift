@@ -37,7 +37,11 @@ struct NotificationHistoryView: View {
                     NotificationMetadataView(notification: selection)
                 }
                 else {
+                    #if os(iOS)
                     Color(uiColor: .systemGroupedBackground).ignoresSafeArea()
+                    #else
+                    Color(nsColor: .controlBackgroundColor).ignoresSafeArea()
+                    #endif
                 }
             }
             .searchable(text: $searchQuery)
@@ -100,7 +104,11 @@ struct NotificationHistoryView: View {
                                         ))
                                     }
                                     .font(.caption)
+                                    #if os(iOS)
                                     .foregroundStyle(Color(uiColor: .secondaryLabel))
+                                    #else
+                                    .foregroundStyle(Color(nsColor: .secondaryLabelColor))
+                                    #endif
                                 }
                                 .tag(notification)
                             }
@@ -133,6 +141,7 @@ struct NotificationHistoryView: View {
 }
 
 #Preview {
+    #if os(iOS)
     if UIDevice.current.userInterfaceIdiom == .phone {
         NavigationStack {
             NotificationHistoryView()
@@ -151,4 +160,12 @@ struct NotificationHistoryView: View {
                 return store
             }())
     }
+    #else
+    NotificationHistoryView()
+        .environmentObject({
+            let store = NotificationHistoryStore()
+            store.history = NotificationMetadata.sampleData
+            return store
+        }())
+    #endif
 }

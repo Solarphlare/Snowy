@@ -18,11 +18,24 @@ struct ContentView: View {
             Form {
                 Section {
                     LabeledContent {
-                        VStack(alignment: .trailing) {
+                        HStack {
+                            #if os(macOS)
+                            Button(action: {
+                                Task { await registrationButtonAction() }
+                            }) {
+                                Text(delegateStateBridge.isRegisteredWithAPNS ? "Re-register with APNs" : "Request APNs Registration")
+                            }
+                            #else
                             Text(delegateStateBridge.isRegisteredWithAPNS ? "Registered" : "Unregistered")
+                            #endif
                         }
                     } label: {
-                        Text("APNs State")
+                        Text("APNs Registration")
+                        #if os(macOS)
+                        if (delegateStateBridge.isRegisteredWithAPNS) {
+                            Text("Re-register with APNs to receiving a new token. Use this only if notifications aren't being received by your device.")
+                        }
+                        #endif
                     }
                     if let lastRegistered {
                         if delegateStateBridge.isRegisteredWithAPNS {
@@ -36,27 +49,40 @@ struct ContentView: View {
                             }
                         }
                     }
+                    #if os(iOS)
                     Button(action: {
                         Task { await registrationButtonAction() }
                     }) {
                         Text(delegateStateBridge.isRegisteredWithAPNS ? "Re-register with APNs" : "Request APNs Registration")
                     }
+                    #endif
                 } header: {
                     Text("APNs")
                 } footer: {
+                    #if os(iOS)
                     if (delegateStateBridge.isRegisteredWithAPNS) {
                         Text("Re-register with APNs, receiving a new token in the process. Use this only if notifications aren't being received by your device.")
                     }
+                    #endif
                 }
                 Section {
-                    ShareLink(item: UserDefaults.standard.string(forKey: "apns_token") ?? "No value provided") {
+                    LabeledContent {
+                        ShareLink(item: UserDefaults.standard.string(forKey: "apns_token") ?? "No value provided") {
+                            Text("Export APNs Token")
+                        }
+                        .disabled(!delegateStateBridge.isRegisteredWithAPNS)
+                    } label: {
+                        #if os(macOS)
                         Text("Export APNs Token")
+                        Text("The APNs token can be used to send notifications to your device. Make sure to keep it a secret.")
+                        #endif
                     }
-                    .disabled(!delegateStateBridge.isRegisteredWithAPNS)
                 } header: {
                     Text("Token")
                 } footer: {
+                    #if os(iOS)
                     Text("The APNs token can be used to send notifications to your device. Make sure to keep it a secret.")
+                    #endif
                 }
                 Section {
                     if attemptedFetch {
@@ -111,13 +137,28 @@ struct ContentView: View {
     }
 }
 
-#Preview {
-    ContentView()
-        .environmentObject(NotificationHistoryStore())
-        .environmentObject(DelegateStateBridge(isRegisteredWithAPNS: false))
-        .onAppear {
-            UserDefaults.standard.setValue(15700000, forKey: "last_registered")
-        }
+struct ContentView_macOS_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(NotificationHistoryStore())
+            .environmentObject(DelegateStateBridge(isRegisteredWithAPNS: false))
+            .onAppear {
+                UserDefaults.standard.setValue(15700000, forKey: "last_registered")
+            }
+            .previewDevice("My Mac")
+    }
+}
+
+struct ContentView_iPhone_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(NotificationHistoryStore())
+            .environmentObject(DelegateStateBridge(isRegisteredWithAPNS: false))
+            .onAppear {
+                UserDefaults.standard.setValue(15700000, forKey: "last_registered")
+            }
+            .previewDevice("iPhone 16 Pro")
+    }
 }
 
 extension ContentView {
